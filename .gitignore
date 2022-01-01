@@ -106,8 +106,6 @@ gradle
 
 # Ignore Gradle GUI config
 gradle-app.setting
-gradlew
-gradlew.bat
 gradle.properties
 
 # Cache of project
