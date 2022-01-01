@@ -1,0 +1,5 @@
+name: StoryHard
+version: ${version}
+description: Minecraft but more hardcore !
+main: fr.aytronn.storyhard.StoryHard
+api-version: 1.18
