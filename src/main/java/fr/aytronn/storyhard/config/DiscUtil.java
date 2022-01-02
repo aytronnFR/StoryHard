@@ -65,7 +65,8 @@ public class DiscUtil {
             lock.lock();
             try {
                 file.createNewFile();
-                Files.write(content, file, StandardCharsets.UTF_8);
+                Files.asCharSink(file, StandardCharsets.UTF_8).write(content);
+                //Files.write(content, file, StandardCharsets.UTF_8);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {

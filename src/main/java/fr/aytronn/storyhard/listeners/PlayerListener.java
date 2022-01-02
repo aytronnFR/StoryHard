@@ -21,7 +21,8 @@ public class PlayerListener implements Listener {
      */
     @EventHandler
     public void playerTakeDamageFromEntity(final EntityDamageByEntityEvent event) {
-        if (!(event.getEntity() instanceof final Player player)) return;
+        if (!(event.getEntity() instanceof Player)) return;
+        final var player = (Player) event.getEntity();
         event.setDamage(player.getHealth());
     }
 }
