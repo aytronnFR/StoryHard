@@ -22,14 +22,6 @@ public class Persist {
         this.discUtil = new DiscUtil();
     }
 
-    public String getName(Class<?> clazz) {
-        return clazz.getSimpleName().toLowerCase();
-    }
-
-    public File getFile(String name) {
-        return new File(StoryHard.getInstance().getDataFolder(), name + ".json");
-    }
-
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void save(Object instance, File file) {
         final Runnable runnable = () -> {
@@ -64,6 +56,10 @@ public class Persist {
         return getFile(getName(type));
     }
 
+    public File getFile(String name) {
+        return new File(StoryHard.getInstance().getDataFolder(), name + ".json");
+    }
+
     /**
      * This function is used to get a
      * file from it's object name
@@ -94,21 +90,11 @@ public class Persist {
         return getName(object.getClass());
     }
 
-    public <T> T load(Class<T> clazz, File file) {
-        final var object = basicLoad(clazz, file);
-        save(object, file);
-        return object;
+    public String getName(Class<?> clazz) {
+        return clazz.getSimpleName().toLowerCase();
     }
 
-    public String load(File file) {
-        return CompletableFuture.supplyAsync(() -> discUtil.readCatch(file), CustomThread.FILE_EXECUTOR.get()).join();
-    }
 
-    public <T> T load(Class<T> clazz, String content) {
-        final var object = basicLoad(clazz, content);
-        save(object);
-        return object;
-    }
 
     private <T> T basicLoad(Class<T> clazz, File file) {
         final CompletableFuture<T> completableFuture = CompletableFuture.supplyAsync(() -> {
@@ -154,10 +140,26 @@ public class Persist {
     /**
      * This function is used to load a class
      * from server config dir
-     * @param tClass instance to load
+     * @param classT instance to load
      * @return the loaded class
      */
-    public <T> T load(Class<T> tClass) {
-        return load(tClass, getFile(tClass));
+    public <T> T load(Class<T> classT) {
+        return load(classT, getFile(classT));
+    }
+
+    public <T> T load(Class<T> clazz, String content) {
+        final var object = basicLoad(clazz, content);
+        save(object);
+        return object;
+    }
+
+    public String load(File file) {
+        return CompletableFuture.supplyAsync(() -> discUtil.readCatch(file), CustomThread.FILE_EXECUTOR.get()).join();
+    }
+
+    public <T> T load(Class<T> clazz, File file) {
+        final var object = basicLoad(clazz, file);
+        save(object, file);
+        return object;
     }
 }

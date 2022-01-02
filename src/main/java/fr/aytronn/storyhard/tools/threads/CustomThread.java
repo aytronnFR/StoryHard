@@ -117,9 +117,11 @@ public enum CustomThread {
         while (!executor.isTerminated()) {
             try {
                 if (!executor.awaitTermination(3L, TimeUnit.MINUTES)) {
-                    StoryHard.getInstance().getLogger().log(Level.WARNING, "Server is still waiting for Thread to be done.");
+                    StoryHard.getInstance().getLogger().log(Level.WARNING,
+                            "Server is still waiting for Thread to be done.");
                 }
             } catch (InterruptedException ignored) {
+                //
             }
         }
     }
