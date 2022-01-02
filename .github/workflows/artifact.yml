@@ -35,5 +35,5 @@ jobs:
       - name: Step 5 - Persist workflow data as artificats
         uses: actions/upload-artifact@v2
         with:
-          name: github-actions-artifact
+          name: ${{ github.repository }}
           path: staging
