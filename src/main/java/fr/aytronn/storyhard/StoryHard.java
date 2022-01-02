@@ -35,7 +35,7 @@ public final class StoryHard extends JavaPlugin {
             this.gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().enableComplexMapKeySerialization()
                     .excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.VOLATILE).create();
             this.persist = new Persist();
-            loadConfiguration();
+            //loadConfiguration();
 
             getLogger().info(ChatColor.YELLOW
                     + "Configuration loaded (" + (System.currentTimeMillis() - startMillis) + ") ms.");
