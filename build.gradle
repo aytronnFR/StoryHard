@@ -23,7 +23,7 @@ tasks.withType(Checkstyle) {
 
 
 group = 'fr.aytronn'
-version = System.getenv('VERSION') ? System.getenv('VERSION') : 'DEVELOPMENT'
+version = System.getenv('VERSION') ? System.getenv('VERSION') : ''
 
 sourceCompatibility = '17'
 targetCompatibility = '17'

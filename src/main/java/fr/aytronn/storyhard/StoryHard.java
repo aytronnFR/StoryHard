@@ -7,9 +7,13 @@ import fr.aytronn.storyhard.config.Persist;
 import fr.aytronn.storyhard.listeners.PlayerListener;
 import fr.aytronn.storyhard.tools.threads.CustomThread;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.Difficulty;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.lang.reflect.Modifier;
+import java.util.Objects;
 
 public final class StoryHard extends JavaPlugin {
     private static StoryHard instance;
@@ -46,6 +50,10 @@ public final class StoryHard extends JavaPlugin {
             registerCommands();
             getLogger().info(ChatColor.YELLOW
                     + "Class loaded (" + (System.currentTimeMillis() - startMillis) + ") ms.");
+            getLogger().info(ChatColor.RED + "Setting difficulty to hard");
+            for (final var world : Bukkit.getWorlds()) {
+                world.setDifficulty(Difficulty.HARD);
+            }
         } catch (Exception e) {
             getLogger().severe(e.getMessage());
             e.printStackTrace();
