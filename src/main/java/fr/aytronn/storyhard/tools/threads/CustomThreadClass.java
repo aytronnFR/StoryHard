@@ -28,13 +28,13 @@ public class CustomThreadClass implements ThreadFactory {
     /**
      * Allow to create a new thread
      *
-     * @param r Runnable
+     * @param runnable Runnable
      * @return Thread
      */
     @Override
-    public Thread newThread(Runnable r) {
+    public Thread newThread(Runnable runnable) {
         final var name = String.format(nameFormat, threadNumber.getAndIncrement());
-        final Thread thread = new FastThreadLocalThread(r, name);
+        final Thread thread = new FastThreadLocalThread(runnable, name);
         thread.setDaemon(daemon);
         thread.setPriority(priority);
         thread.setUncaughtExceptionHandler((t, e) -> e.printStackTrace());
